@@ -2,8 +2,8 @@ from colorama import Fore
 
 
 PRE_TITLE_QUEST = 'Podaj rodzaj'
-PRE_TITLE_INT = 'Podaj rozmiar'
 PRE_TITLE_FLOAT = 'Podaj procent'
+PRE_TITLE_INT = 'Podaj rozmiar'
 PRE_TITLE_SET = 'Podaj zakres zmienych:'
 REPRESENT = [
     'reprezentacji',

@@ -42,8 +42,6 @@ SELECT = {
     #'': tools.selAutomaticEpsilonLexicase,
 }
 
-# todo rzeczywiste
-
 
 class GenAlg:
     """ Klasa przeprowadza proces genetyczny """

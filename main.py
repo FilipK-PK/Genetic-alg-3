@@ -15,9 +15,9 @@ from src.gen_alg import GenAlg
 
 
 if __name__ == '__main__':
-    app = Cui()
-    app.run()
-    vec = app.get_result()
+    cui = Cui()
+    cui.run()
+    vec = cui.get_result()
 
-    app = GenAlg(vec)
-    app.run()
+    gen = GenAlg(vec)
+    gen.run()
