@@ -2,16 +2,17 @@ from deap import creator, base, tools
 from src.fun_opt import FunOpt
 from src.statistic import Statistic
 import random
+from src import algorithm
 
 
 MATE = {
     '1-point': tools.cxOnePoint,
     '2-points': tools.cxTwoPoint,
     'jednolite': tools.cxUniform,
-    #'': tools.cxPartialyMatched,
-    #'': tools.cxOrdered,
-    #'': tools.cxBlend,
-    #'': tools.cxESBlend,
+    'arytmetyczny': algorithm.cxAveranging,
+    'symulacja': tools.cxSimulatedBinary,
+    'mieszająca': tools.cxBlend,
+    'sim_bound': tools.cxSimulatedBinaryBounded
     #'': tools.cxESTwoPoint,
     #'': tools.cxSimulatedBinary,
     #'': tools.cxSimulatedBinaryBounded,
@@ -19,11 +20,12 @@ MATE = {
 }
 MUTATE = {
     '1-point': tools.mutFlipBit,
+    '2-points': algorithm.mutTwoPoint,
+    'jednolita': algorithm.mutEvenBit,
     'Gaussowska': tools.mutGaussian,
     'sekfencja indeksu': tools.mutShuffleIndexes,
-    #'': tools.mutPolynomialBounded,
-    #'': tools.mutUniformInt,
-    #'': tools.mutESLogNormal,
+    'indeksowa': algorithm.mutIndexing,
+    'rownomierna': algorithm.mutEven
 }
 SELECT = {
     'turniej': tools.selTournament,
@@ -119,9 +121,26 @@ class GenAlg:
     def __set_cross(self) -> None:
         """ Metoda ustawia rodzaj krzyrzowania """
 
-        self.__toolbox.register(
-            "mate", MATE[self.__param['mutate']]
-        )
+        if self.__param['cross'] == 'mieszająca':
+            self.__toolbox.register(
+                "mate", MATE[self.__param['cross']],
+                alpha=random.random()
+            )
+        elif self.__param['cross'] == 'symulacja':
+            self.__toolbox.register(
+                "mate", MATE[self.__param['cross']],
+                eta=random.random()
+            )
+        elif self.__param['cross'] == 'sim_bound':
+            self.__toolbox.register(
+                "mate", MATE[self.__param['cross']],
+                eta=random.random(),
+                low=0, up=1
+            )
+        else:
+            self.__toolbox.register(
+                "mate", MATE[self.__param['cross']]
+            )
 
     def __set_mutable(self) -> None:
         """ Metoda ustawia rodzaj mutacji """

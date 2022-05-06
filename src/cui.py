@@ -22,7 +22,7 @@ CROSS_BIT = [
 ]
 CROSS_REL = [
     'krzyzowania',
-    [''],
+    ['mieszające', 'symulacja', 'sim_bound'],
     'cross'
 ]
 FUN = [
@@ -41,12 +41,12 @@ SORT = [
 ]
 MUTATE_BIT = [
     'mutacji',
-    ['1-point', 'indeksowe'],
+    ['1-point', '2-points', 'jednolita'],
     'mutate'
 ]
 MUTATE_REL = [
     'mutacji',
-    ['Gaussowska'],
+    ['Gaussowska', 'indeksowa', 'rownomierna'],
     'mutate'
 ]
 BIT = ['długosci cechy', 'bit']
